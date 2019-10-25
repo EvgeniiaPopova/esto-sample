@@ -1,0 +1,12 @@
+version: '3.3'
+services:
+  esto_db:
+    container_name: esto_db
+    image: mysql:5.7.22
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: esto
+      MYSQL_USER: homestead
+      MYSQL_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: root
