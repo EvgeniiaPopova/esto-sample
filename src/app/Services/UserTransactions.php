@@ -24,7 +24,7 @@ class UserTransactions
      */
     public function lastUsers($qty = 100)
     {
-        $users = User::orderBy('created_at', 'DESC')->limit($qty)->get();
+        $users = User::orderBy('id', 'DESC')->limit($qty)->get();
     
         return $users;
     }

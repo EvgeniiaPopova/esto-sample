@@ -16,5 +16,7 @@ class UsersTableSeeder extends Seeder
             ['name' => 'Admin'],
             ['email' => 'admin@esto.ee', 'permissions' => true]
         );
+    
+        factory(User::class, 10)->create();
     }
 }

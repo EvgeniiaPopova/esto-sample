@@ -29,19 +29,19 @@ abstract class TestCase extends BaseTestCase
         $this->artisan('db:seed');
         
         $this->app[Kernel::class]->setArtisan(null);
-//
-//        $this->beforeApplicationDestroyed(function () {
-//            $this->artisan('migrate:rollback');
-//
-//            RefreshDatabaseState::$migrated = false;
-//        });
+
+        $this->beforeApplicationDestroyed(function () {
+            $this->artisan('migrate:rollback');
+
+            RefreshDatabaseState::$migrated = false;
+        });
     }
     /**
      * Reset the migrations
      */
     public function tearDown() :void
     {
-//        $this->artisan('migrate:reset');
+        $this->artisan('migrate:reset');
         parent::tearDown();
     }
 }

@@ -9,6 +9,6 @@ $factory->define(\App\Transaction::class, function (Faker $faker) {
     return [
         'amount' => $faker->randomFloat(2, 1, 9999),
         'type' => array_rand($type),
-        'user_id' => auth()->user()->id,
+        'user_id' => auth()->check() ? auth()->user()->id : \App\User::all()->random()->id,
     ];
 });
