@@ -28,7 +28,7 @@ class StoreUser extends FormRequest
         
         return $user->permissions;
     }
-
+    
     /**
      * Get the validation rules that apply to the request.
      *

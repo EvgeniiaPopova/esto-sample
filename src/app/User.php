@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -32,7 +33,7 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     use Notifiable;
-
+    
     /**
      * The attributes that are mass assignable.
      *
@@ -63,5 +64,14 @@ class User extends Authenticatable
     public function debitTransactions()
     {
         return $this->hasMany(Transaction::class, 'user_id')->type(Transaction::TYPE_DEBIT);
+    }
+    
+    /**
+     * @param int $qty
+     * @return Collection
+     */
+    public static function latestUsers($qty = 100)
+    {
+        return self::latest('id')->limit($qty)->get();
     }
 }

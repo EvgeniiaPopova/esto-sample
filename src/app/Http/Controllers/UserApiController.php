@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreUser;
 use App\Services\UserTransactions;
 use App\User;
-use Illuminate\Http\Request;
 
 class UserApiController extends Controller
 {
@@ -16,25 +15,24 @@ class UserApiController extends Controller
      */
     public function index()
     {
-        $userTransaction = new UserTransactions();
-        $lastUsers = $userTransaction->lastUsers(10);
-    
-        $lastUsers->each(function ($value, $key) use ($userTransaction){
-            $value->debitAmount = $userTransaction->userDebit($value);
+        $lastUsers = User::latestUsers(10);
+        
+        $lastUsers->each(function ($value, $key) {
+            $userTransaction = new UserTransactions($value);
+            $value->debitAmount = $userTransaction->userDebit();
         });
         
         return response()->json($lastUsers);
-    
     }
     
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param StoreUser $request
      * @return User
      */
     public function store(StoreUser $request)
     {
-        return User::create($request->all());
+        return User::create($request->validated());
     }
 }

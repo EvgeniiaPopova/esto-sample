@@ -3,31 +3,21 @@
 
 namespace App\Services;
 
-
-use App\Transaction;
 use App\User;
 
 class UserTransactions
 {
+    public function __construct(User $user)
+    {
+        $this->user = $user;
+    }
+    
     /**
      * @param User $user
      * @return User
      */
-    public function userDebit(User $user)
+    public function userDebit()
     {
-        return $user->debitTransactions()->sum('amount');
+        return $this->user->debitTransactions()->sum('amount');
     }
-    
-    /**
-     * @param int $qty
-     * @return User
-     */
-    public function lastUsers($qty = 100)
-    {
-        $users = User::orderBy('id', 'DESC')->limit($qty)->get();
-    
-        return $users;
-    }
-    
-    
 }

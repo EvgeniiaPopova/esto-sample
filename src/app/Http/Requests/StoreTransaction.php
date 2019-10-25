@@ -42,6 +42,6 @@ class StoreTransaction extends FormRequest
             'amount' => ['required', 'regex:/^\d+(\.\d{1,2})?$/'],
             'user_id' => 'required|exists:users,id'
         ];
-   
+        
     }
 }

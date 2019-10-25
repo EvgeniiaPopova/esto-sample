@@ -15,17 +15,17 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Transaction extends Model
 {
-    /** @var string  */
+    /** @var string */
     protected $table = 'transactions';
     
-    /** @var array  */
+    /** @var array */
     protected $guarded = [];
     
-    /** @const int  */
+    /** @const int */
     const TYPE_CREDIT = 1;
     const TYPE_DEBIT = 2;
     
-    /** @const array  */
+    /** @const array */
     const TRANSACTION_TYPES = [
         self::TYPE_CREDIT => 'credit',
         self::TYPE_DEBIT => 'debit',
@@ -42,7 +42,7 @@ class Transaction extends Model
     /**
      * Scope a query to only include credit transactions.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder $query
+     * @param \Illuminate\Database\Eloquent\Builder $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeType($query, $type)
